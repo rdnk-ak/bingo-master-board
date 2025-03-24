@@ -6,7 +6,7 @@ let keyPressed = false;
 
 let saveData = {
   drawnBingoBalls: [],
-  themeColor: "classic",
+  themeColor: "blue",
   bingoStyle: "ball",
   blockerEnabled: false,
   lastActionWasRemove: false,
