@@ -8,6 +8,10 @@
     font-display: swap;
 }
 
+#main-footer{
+    text-align: center;
+    align-self: bottom;
+}
 
 html {
     height: 100%;
@@ -36,7 +40,7 @@ a:visited {
 
 body {
     padding: 0;
-    background: #000;
+    background: #051C37;
     color: #FFFFFF;
     margin: 0;
     display: flex;
@@ -47,6 +51,28 @@ body {
     font-family: "Archivo Narrow";
     overflow: hidden;
     position: fixed;
+}
+
+#local-time{
+    width: 193px;
+    height: 44px;
+    font-size: 24px;
+    margin: 0px auto 0px auto;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.date {
+    font-size: 1vw;
+    margin-bottom: 10px;
+}
+
+.time {
+color: rgb(255, 255, 255);
+font-size: 1.5vw;
+font-weight: bold;
 }
 
 .noscript {
@@ -83,14 +109,14 @@ body {
 }
 
 #title {
-    font-size: 135px;
-    font-family: 'Ashley Crawford', 'Archivo Narrow', sans-serif;
-    font-weight: 800;
+    font-size: 7em;
+    font-family: 'Ashley Crawford';
+    font-weight: bolder;
     color: #FFFFFF;
     text-align: center;
     line-height: 1.2;
-    margin-top: -75px;
-    transform: rotate3d(0, 0, 1, 10deg);
+    margin-top: -32%;
+    transform: rotate3d(0, 0, 1, -10deg);
 }
 
 #subheading {
@@ -98,12 +124,12 @@ body {
     width: 100%;
     top: 100px;
     line-height: 1.2;
-    font-size: 40px;
+    font-size: 100px;
     font-family: 'Archivo Narrow';
     color: transparent;
     position: relative;
     text-align: center;
-    background: url(../img/woodstock-pta-mark.png) no-repeat fixed center;
+    background: url(../img/ShemyaMWR.png) no-repeat fixed center;
     background-size: contain;
 }
 
@@ -116,7 +142,19 @@ body {
     color: #FBC611;
     text-align: center;
 }
-
+#play {
+    position: absolute;
+    width: 20%;
+    bottom: 100%;
+    font-size: 24px;
+    font-weight: 900;
+    background-color: #191f5588;
+    color: #FBC611;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
 .flexCenter {
     display: flex;
     align-items: center;
@@ -160,6 +198,7 @@ body {
 
 #settingsSlide {
     display: none;
+    background-color: #051c37ef;
     height: 100%;
     grid-template-columns: 100%;
     grid-template-rows: 96px 1fr 77px;
@@ -170,6 +209,7 @@ body {
 
 #winningPatternSlide {
     display: none;
+    background-color: #051c37ef;
     height: 100%;
     grid-template-columns: 100%;
     grid-template-rows: 96px 1fr 77px;
@@ -187,6 +227,12 @@ h2 {
 }
 
 .controlsCol {
+    display: flex; /* Enables Flexbox */
+    flex-direction: column; /* Aligns items vertically */
+    justify-content: space-between; /* Spaces items evenly, including at the top and bottom */
+    align-items: center; /* Centers items horizontally (optional) */
+    height: 100%; /* Ensures the container takes the full height of its parent */
+    gap: 0px;
     grid-area: controlsCol;
 }
 
@@ -316,11 +362,14 @@ h2 {
 #goToMasterBoard {
     display: inline-block;
     margin: 0 0.7em;
+    font-size: smaller;
     cursor: pointer;
+    color: #FBC611;
     transition: color 0.15s;
 }
 
 #howToUse:hover,
+#play:hover,
 #goToMasterBoard:hover {
     opacity: .85;
 }
@@ -371,9 +420,9 @@ h2 {
 
 #drawBallButton {
     opacity: .7;
-    cursor: crosshair;
+    cursor: pointer;
     width: 135px;
-    height: 50px;
+    height: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -381,6 +430,7 @@ h2 {
     border: 1px solid #ffffff;
     border-radius: 15px;
     padding: 10px;
+    margin-top: 130%;
     transition: background-color 0.15s;
 }
 
@@ -479,7 +529,7 @@ h2 {
 }
 
 .bingoLetter:hover {
-    cursor: crosshair;
+    cursor: pointer;
     opacity: .85;
 }
 
@@ -510,7 +560,7 @@ h2 {
     justify-content: center;
     align-items: center;
     font-size: 12px;
-    margin: 26px auto 0 auto;
+    margin: 5px auto 25px auto;
     cursor: pointer;
     border-radius: 50px;
     transition: background-color 0.15s;
@@ -556,8 +606,8 @@ h2 {
     border-radius: 50%;
     width: 186px;
     height: 186px;
-    margin: 130px auto 30px;
-    cursor: crosshair;
+    margin: 5px auto 30px;
+    cursor: pointer;
 }
 
 .bigBingoBallClass:hover {
@@ -591,7 +641,7 @@ h2 {
     width: 193px;
     height: 44px;
     font-size: 24px;
-    margin: 9px auto 0 auto;
+    margin: 0px auto 120px auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -635,7 +685,7 @@ h2 {
     margin: 4px 10px;
     font-size: 42px;
     font-weight: 900;
-    cursor: crosshair;
+    cursor: pointer;
     border-style: solid;
     border-width: 1px;
     border-color: #B6C9D7;
@@ -687,7 +737,7 @@ h2 {
     color: #FFFFFF;
     opacity: 1;
     font-weight: 700;
-    background: radial-gradient(circle at 31.5px 12px, #84B8A2, #B7E6D2);
+    background: radial-gradient(circle at 31.5px 12px, #3ecc91, #B7E6D2);
 }
 
 .bingoBallBallActiveO {
@@ -720,7 +770,7 @@ h2 {
     height: 61px;
     margin: 4.5px 10px;
     font-size: 52px;
-    cursor: crosshair;
+    cursor: pointer;
     color: #ffffff;
     opacity: 0.2;
 }
@@ -818,8 +868,7 @@ h2 {
     width: 90%;
     height: 201px;
     background: rgba(0, 0, 0, 0);
-    margin: 0 auto;
-    margin-top: 40px;
+    margin: 5px auto 10px auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -836,7 +885,7 @@ h2 {
 }
 
 .bingoCard:hover {
-    cursor: crosshair;
+    cursor: pointer;
     opacity: 0.75;
 }
 
@@ -903,7 +952,7 @@ h2 {
 }
 
 .bigBingoCardBody:hover {
-    cursor: crosshair;
+    cursor: pointer;
     background-color: #ddd;
 }
 
