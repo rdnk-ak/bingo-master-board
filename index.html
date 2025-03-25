@@ -55,23 +55,25 @@
     <div id="area">
       
       <div id="titleSlide">
+        
         <!--Preload bold and italic font-->
         <div style="position:absolute;">
           <strong>&nbsp;</strong>
           <em>&nbsp;</em>
         </div>
         <!---->
+        
         <div id="subheading">Shemya MWR</div>
        
         <div class="flexCenter">
-          
           <div>
+            <div id="logo"><img src="../assets/img/MWR800.png" alt="MWR Logo" width="400"></div>
             <div id="title" class="tilting">
               <span style="color:#FBC611">B</span><span style="color:#E653B1;position: relative;bottom: -20px;">I</span><span style="color:#7AB6DC">N</span><span style="color:#B7E6D2;position: relative;bottom: 15px;">G</span><span style="color:#F15A25">O</span><span style="color:#A5357D;position: relative;left: -10px;">!</span>
             </div>
             
             <div id="titleSelection">
-              <button id="play" onclick="hide('titleSlide');show('masterBoardSlide', 'grid');">PLAY NOW!</button>
+              <button class="playButton" onclick="hide('titleSlide');show('masterBoardSlide', 'grid');">PLAY NOW!</button>
               <div id="howToUse" onclick ="hide('titleSlide');show('howToUseSlide', 'grid');">Help</div>
             </div>
           </div>
@@ -231,14 +233,14 @@
       <div id="onboardingSlide">
         <div class="flexCenter" style="text-align:center;">
           <div>
-            <h3 style="margin-top:0.5em;">Welcome to <span style="color:#ce181e;">Bingo</span> <span style="color:#948a54;">Master Board</span></h3>
+            <h3 style="margin-top:0.5em;">Welcome to <span style="color:#016dd3;"><a href="https://shemyamwr.com" target="_blank">Shemya MWR</a></span> <span>Bingo!</span></h3>
             <p class="smallMargin">
-              <img src="./assets/img/ShemyaMWR.png" width="650">
+              <img src="./assets/img/MWR800.png" width="400">
             </p>
-            <p class="smallMargin" style="font-size:24px;"><strong>Host and manage</strong> Bingo games.</p>
-            <p class="smallMargin" style="font-size:24px;"><strong>Randomly draw</strong> Bingo balls. <strong>Set your own</strong> winning pattern and look.</p>
-            <div class="helpFooterLabel" style="display:block;margin-top:1em;" onclick="hide('onboardingSlide');show('titleSlide');">
-              Begin
+            <p class="smallMargin" style="font-size:24px;"><strong>Hosted and managed Bingo game</strong> Developed by <a href="https://github.com/TimTree/">TimTree</a> customized by <a href="https://github.com/rdnk-ak/">rdnk-ak</a></p>
+            <p class="smallMargin" style="font-size:24px;"><strong>Randomly draw</strong> Bingo balls. <strong>Set your own</strong> winning pattern and theme.</p>
+            <div>
+              <button class="beginButton" onclick="hide('onboardingSlide');show('titleSlide');">Begin</button>
             </div>
           </div>
         </div>
