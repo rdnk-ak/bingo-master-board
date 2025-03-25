@@ -115,10 +115,9 @@ font-weight: bold;
     color: #FFFFFF;
     text-align: center;
     line-height: 1.2;
-    margin-top: -32%;
+    margin-top: -15%;
     transform: rotate3d(0, 0, 1, -10deg);
 }
-
 #subheading {
     position: absolute;
     width: 100%;
@@ -129,7 +128,6 @@ font-weight: bold;
     color: transparent;
     position: relative;
     text-align: center;
-    background: url(../img/ShemyaMWR.png) no-repeat fixed center;
     background-size: contain;
 }
 
@@ -142,7 +140,7 @@ font-weight: bold;
     color: #FBC611;
     text-align: center;
 }
-#play {
+.playButton {
     position: absolute;
     width: 20%;
     bottom: 100%;
@@ -155,11 +153,30 @@ font-weight: bold;
     cursor: pointer;
     border-radius: 5px;
 }
+.beginButton {
+    position: middle;
+    width: 20%;
+    font-size: 24px;
+    font-weight: 900;
+    background-color: #191f5588;
+    color: #FBC611;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    
+}
 .flexCenter {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100%;
+}
+#logo{
+    display: inherit;
+    margin-top: -70%;
+    text-align: center;
+
 }
 
 #titleSlide {
@@ -368,7 +385,9 @@ h2 {
     transition: color 0.15s;
 }
 
+.beginButton:hover,
 #howToUse:hover,
+.playButton:hover,
 #play:hover,
 #goToMasterBoard:hover {
     opacity: .85;
