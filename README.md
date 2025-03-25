@@ -9,6 +9,7 @@ Bingo Display Board for hosting BINGO games.
 * Change the look of the board with dark, light and brand color themes
 * Now displaying current time and date
 
+### Try it here: [Bingo-Project](https://rdnk-ak.github.io/bingo-project/))
 Bingo Master Board is designed for full screen view in a computer browser and supports the latest versions of most modern browsers.
 ###### (not desinged for mobile device browsers)
 
