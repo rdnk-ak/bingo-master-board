@@ -70,7 +70,6 @@ body {
 }
 
 .time {
-color: rgb(255, 255, 255);
 font-size: 1.5vw;
 font-weight: bold;
 }
@@ -181,6 +180,7 @@ font-weight: bold;
 
 #titleSlide {
     height: 100%;
+    background-color: #051C37;
     background-image: url("../img/bingo-burst-bg-light.svg");
     background-size: cover;
     background-repeat: no-repeat;
@@ -188,6 +188,7 @@ font-weight: bold;
 
 #howToUseSlide,
 #aboutCreditsSlide {
+    background-color: #051C37;
     display: none;
     height: 100%;
     grid-template-columns: 100%;
@@ -200,11 +201,12 @@ font-weight: bold;
 }
 
 #onboardingSlide {
+    background-color: #051C37;
     display: none;
     height: 100%;
 }
 
-#masterBoardSlide {
+#SplashBoardSlide {
     display: none;
     height: 100%;
     grid-template-columns: 255px 1fr 1fr 1fr 1fr 1fr;
@@ -215,7 +217,7 @@ font-weight: bold;
 
 #settingsSlide {
     display: none;
-    background-color: #051c37ef;
+    background-color: #051C37;
     height: 100%;
     grid-template-columns: 100%;
     grid-template-rows: 96px 1fr 77px;
@@ -226,7 +228,7 @@ font-weight: bold;
 
 #winningPatternSlide {
     display: none;
-    background-color: #051c37ef;
+    background-color: #051C37;
     height: 100%;
     grid-template-columns: 100%;
     grid-template-rows: 96px 1fr 77px;
@@ -376,7 +378,7 @@ h2 {
 }
 
 #howToUse,
-#goToMasterBoard {
+#goToSplashBoard {
     display: inline-block;
     margin: 0 0.7em;
     font-size: smaller;
@@ -389,7 +391,7 @@ h2 {
 #howToUse:hover,
 .playButton:hover,
 #play:hover,
-#goToMasterBoard:hover {
+#goToSplashBoard:hover {
     opacity: .85;
 }
 
@@ -446,8 +448,9 @@ h2 {
     justify-content: center;
     align-items: center;
     font-size: 24px;
-    border: 1px solid #ffffff;
-    border-radius: 15px;
+    border: 1px solid;
+    font-weight: bolder;
+    border-radius: 30px;
     padding: 10px;
     margin-top: 130%;
     transition: background-color 0.15s;
@@ -455,7 +458,7 @@ h2 {
 
 #drawBallButton:hover {
     opacity: 1;
-    background-color: #66788A;
+    background-color: #53a3f38a;
 }
 
 #hex {}
@@ -484,12 +487,21 @@ h2 {
 }
 
 #fullScreenButton,
-#fullScreenButtonDown {
+#fullScreenButtonDown,
+#homeButton {
     width: 30px;
     height: 30px;
     background-size: contain;
     background-repeat: no-repeat;
     cursor: pointer;
+}
+
+#homeButton {
+    background-image: url("../img/homeButton.svg");
+}
+
+#homeButton:hover {
+    background-image: url("../img/homeButtonHover.svg");
 }
 
 #fullScreenButton {
@@ -586,19 +598,20 @@ h2 {
 }
 
 #hideBoard {
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    border: 1px solid;
 }
 
 #hideBoard:hover {
-    background-color: #A5357D;
+    background-color: #53a3f38a;
 }
 
 #showBoard {
     background-color: #A5357D;
+    border: 1px solid;
 }
 
 #showBoard:hover {
-    background-color: #E653B1;
+    background-color: #53a3f38a;
 }
 
 .smallButton {
@@ -861,7 +874,9 @@ h2 {
 .themeSelection span:last-of-type {
     margin-right: 0;
 }
-
+.changeColorOnWhite {
+    color: inherit;
+}
 .themeColor {
     padding: 3px 12px;
     border-radius: 5px;
@@ -877,6 +892,26 @@ h2 {
 #light,
 #blue {
     color: #899DAF;
+}
+
+#classic {
+    color: #bbbbbb;
+}
+
+#red {
+    color: #a52a2a;
+}
+
+#green {
+    color: #3c692b;
+}
+
+#purple {
+    color: #472f77;
+}
+
+#white {
+    color: #ffffff;
 }
 
 .chromeBingoLetterFix {
@@ -920,6 +955,9 @@ h2 {
 }
 
 .bingoCardBody {
+    font-size: x-large;
+    align-content: center;
+    text-align: center;
     background-color: #f2f2f2;
     border: 1px solid #B6C9D7;
 }
@@ -982,6 +1020,10 @@ h2 {
 
 .bingoCardActive:hover {
     background-color: #f14b3a;
+}
+
+.freeSpace {
+    color: #000;
 }
 
 .twoSections {
