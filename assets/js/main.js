@@ -1,7 +1,7 @@
 const fixedWidth = document.getElementById("area").offsetWidth;
 const fixedHeight = document.getElementById("area").offsetHeight;
 let isFullScreen = false;
-let loadedMasterBoard = false;
+let loadedSplashBoard = false;
 let keyPressed = false;
 
 let saveData = {
@@ -13,12 +13,12 @@ let saveData = {
   ballsDrawnRemaining: "drawn",
   hiddenBingoLetters: [],
   winningPattern: [],
-  firstRun: 0
+  firstRun: 1
 }
 
 if(supportsLocalStorage) {
-  if (localStorage.getItem("bingoMasterBoardSaveData")) {
-    const parsedData = JSON.parse(localStorage.getItem("bingoMasterBoardSaveData"));
+  if (localStorage.getItem("bingoSplashBoardSaveData")) {
+    const parsedData = JSON.parse(localStorage.getItem("bingoSplashBoardSaveData"));
     for (let i = 0; i < Object.keys(parsedData).length; i += 1) {
       if (saveData.hasOwnProperty(Object.getOwnPropertyNames(parsedData)[i])) {
         saveData[Object.keys(saveData)[Object.keys(saveData).indexOf(Object.getOwnPropertyNames(parsedData)[i])]]
@@ -30,7 +30,7 @@ if(supportsLocalStorage) {
 
 function save() {
   if (supportsLocalStorage) {
-    localStorage.setItem('bingoMasterBoardSaveData', JSON.stringify(saveData));
+    localStorage.setItem('bingoSplashBoardSaveData', JSON.stringify(saveData));
   }
 }
 
@@ -71,11 +71,11 @@ function init() {
 		bingoBallClass[i].addEventListener("click", () => {activateBingoBall(i+1)});
 	}
   let param = location.search;
-  if (param === "?masterboard") {
+  if (param === "?splashboard") {
     setTimeout(() => {
       hide("titleSlide");
       show("fullScreenToggleLayer");
-  		show("masterBoardSlide", "grid");
+  		show("SplashBoardSlide", "grid");
   	},50);
   } else {
     if (saveData.firstRun === 0 && supportsLocalStorage) {
@@ -145,14 +145,14 @@ function show(elementName, display) {
 	} else {
 	  document.getElementById(elementName).style.display = "block";
 	}
-	if (elementName === "masterBoardSlide") {
+	if (elementName === "SplashBoardSlide") {
 		changeBG(saveData.themeColor);
 		document.getElementById("drawBallLayer").style.display = "block";
 		document.getElementById("fullScreenToggle").classList.add("fullScreenToggleSmall");
 		document.getElementById("homeButton").style.display = "block";
-    if (loadedMasterBoard === false) {
-      setUpMasterBoard();
-      loadedMasterBoard = true;
+    if (loadedSplashBoard === false) {
+      setUpSplashBoard();
+      loadedSplashBoard = true;
     }
     document.onkeydown = function(e) {
       if(!keyPressed) {
@@ -166,10 +166,10 @@ function show(elementName, display) {
         else if (e.keyCode === 78) {hideBingo('N', 'toggle');}
         else if (e.keyCode === 71) {hideBingo('G', 'toggle');}
         else if (e.keyCode === 79) {hideBingo('O', 'toggle');}
-        else if (e.keyCode === 84) {hide('masterBoardSlide');show('settingsSlide', 'grid');}
-        else if (e.keyCode === 87) {hide('masterBoardSlide');show('winningPatternSlide', 'grid');}
+        else if (e.keyCode === 84) {hide('SplashBoardSlide');show('settingsSlide', 'grid');}
+        else if (e.keyCode === 87) {hide('SplashBoardSlide');show('winningPatternSlide', 'grid');}
         else if (e.keyCode === 86) {toggleBallsDrawnRemaining('toggle');}
-        else if (e.keyCode === 72) {hide('masterBoardSlide');show('titleSlide');}
+        else if (e.keyCode === 72) {hide('SplashBoardSlide');show('titleSlide');}
         else if (e.keyCode === 70) {toggleFullScreen();}
       }
     }
@@ -180,7 +180,7 @@ function show(elementName, display) {
       if(!keyPressed) {
         e.preventDefault();
         keyPressed = true;
-        if (e.keyCode === 84 || e.keyCode === 13) {hide('settingsSlide');show('masterBoardSlide', 'grid');}
+        if (e.keyCode === 84 || e.keyCode === 13) {hide('settingsSlide');show('SplashBoardSlide', 'grid');}
         else if (e.keyCode === 70) {toggleFullScreen();}
       }
     }
@@ -190,7 +190,7 @@ function show(elementName, display) {
       if(!keyPressed) {
         e.preventDefault();
         keyPressed = true;
-        if (e.keyCode === 87 || e.keyCode === 13) {hideBingoLettersBasedOnWinningPattern();hide('winningPatternSlide');show('masterBoardSlide', 'grid');}
+        if (e.keyCode === 87 || e.keyCode === 13) {hideBingoLettersBasedOnWinningPattern();hide('winningPatternSlide');show('SplashBoardSlide', 'grid');}
         else if (e.keyCode === 70) {toggleFullScreen();}
       }
     }
@@ -200,7 +200,7 @@ function show(elementName, display) {
       if(!keyPressed) {
         e.preventDefault();
         keyPressed = true;
-        if (e.keyCode === 13) {hide('titleSlide');show('masterBoardSlide', 'grid');}
+        if (e.keyCode === 13) {hide('titleSlide');show('SplashBoardSlide', 'grid');}
         else if (e.keyCode === 70) {toggleFullScreen();}
       }
     }
@@ -246,7 +246,7 @@ function show(elementName, display) {
 
 function hide(elementName) {
   document.getElementById(elementName).style.display = "none";
-	if (elementName === "masterBoardSlide") {
+	if (elementName === "SplashBoardSlide") {
 		changeBG();
 		document.getElementById("drawBallLayer").style.display = "none";
 		document.getElementById("fullScreenToggle").classList.remove("fullScreenToggleSmall");
@@ -288,33 +288,82 @@ function changeFullScreenImg() {
     document.getElementById("fullScreenButtonDown").style.display = "block";
   }
 }
-
+// Refined changeBG function
 function changeBG(color) {
   let newColor;
+  let fallbackColor;
+  let blocker = document.getElementById("blocker");
+  let area = document.getElementById("area");
+  let fader = document.getElementById("fader");
+
   if (color === "blue") {
-    newColor = "#051C37";
-    document.getElementById("blocker").style.backgroundImage = "url('./assets/img/MWR800.png'), linear-gradient(rgb(53, 101, 160), #051C37)";
-    document.getElementById("blocker").style.backgroundSize = "auto";
-    document.getElementById("blocker").style.backgroundRepeat = "no-repeat";
-    document.getElementById("blocker").style.backgroundPosition = "35% center, center";
+      newColor = "linear-gradient( #174880, #051c37)";
+      fallbackColor = "#051C37";
   } else if (color === "red") {
-    newColor = "rgb(253, 166, 166)";
-    document.getElementById("blocker").style.backgroundImage = "linear-gradient(#ed9f9d, #c0504d)";
+      newColor = "linear-gradient( #c0504d, #a52a2a)";
+      fallbackColor = "#a52a2a";
   } else if (color === "green") {
-    newColor = "rgb(150, 206, 129)";
-    document.getElementById("blocker").style.backgroundImage = "linear-gradient(#a9c571, #77933c)" ;
+      newColor = "linear-gradient( #a9c571, #3c692b)";
+      fallbackColor = "#3c692b";
   } else if (color === "classic") {
-    newColor = "#d1cc85";
-    document.getElementById("blocker").style.backgroundImage = "linear-gradient(#c4bd97, #948A54)";
+      newColor = "linear-gradient( #ffffff, #adadad)";
+      fallbackColor = "#adadad";
   } else if (color === "purple") {
-    newColor = "rgb(189, 176, 216)";
-    document.getElementById("blocker").style.backgroundImage = "linear-gradient( #b3a2c7, #725892)";
+      newColor = "linear-gradient( #b3a2c7, #472f77)";
+      fallbackColor = "#472f77";
   } else {
-    newColor = "radial-gradient(#f7eaab, #bfbb73)";
+      newColor = "radial-gradient( #ffffff00, #ffffff00)";
+      fallbackColor = "#ffffff";
   }
-	document.getElementById("area").style.background=newColor;
-	document.getElementById("fader").style.background=newColor;
+
+  blocker.style.backgroundImage = `url('./assets/img/logo800.png'), ${newColor}`;
+  blocker.style.backgroundRepeat = "no-repeat";
+  blocker.style.backgroundPosition = "35% center, center";
+
+  // Apply a solid color to detect brightness
+  area.style.background = fallbackColor;
+  fader.style.background = fallbackColor;
+
+  // Adjust text color for elements with class: "dynamic-text"
+  adjustTextColorByClass("dynamic-text", fallbackColor);
 }
+
+// Function to adjust text color based on brightness
+function adjustTextColorByClass(className, bgColor) {
+  let elements = document.querySelectorAll(`.${className}`);
+
+  elements.forEach(element => {
+      // Convert hex color to RGB
+      let rgb = hexToRgb(bgColor);
+
+      if (!rgb) return; // Avoid errors if conversion fails
+
+      // Calculate brightness
+      let brightness = (rgb.r * 299 + rgb.g * 587 + rgb.b * 114) / 1000;
+
+      // Determine text color
+      let textColor = brightness > 128 ? "black" : "white";
+
+      // Apply text color
+      element.style.color = textColor;
+  });
+}
+
+// Function to convert HEX to RGB
+function hexToRgb(hex) {
+  hex = hex.replace(/^#/, '');
+  if (hex.length === 3) {
+      hex = hex.split('').map(h => h + h).join('');
+  }
+  let result = /^([0-9A-F]{2})([0-9A-F]{2})([0-9A-F]{2})$/i.exec(hex);
+  return result ? {
+      r: parseInt(result[1], 16),
+      g: parseInt(result[2], 16),
+      b: parseInt(result[3], 16)
+  } : null;
+}
+
+
 
 function activateBingoBall(bingoIDNum) {
   let typeOfBingoBall = typeOfBingo(bingoIDNum);
@@ -645,7 +694,7 @@ function toggleBlocker() {
   save();
 }
 
-function setUpMasterBoard() {
+function setUpSplashBoard() {
   if (saveData.blockerEnabled === false) {
     document.getElementById("showBoard").style.display = "none";
     document.getElementById("hideBoard").style.display = "flex";
@@ -679,7 +728,7 @@ function setUpSettings() {
   document.getElementById("bingoStyleBall").style.backgroundColor = "";
   document.getElementById("bingoStyleVintage").style.backgroundColor = "";
   if (saveData.themeColor === "classic") {
-    document.getElementById("classic").style.backgroundColor = "rgba(148,138,84,0.28)";
+    document.getElementById("classic").style.backgroundColor = "rgba(146, 146, 146, 0.28)";
   } else if (saveData.themeColor === "red") {
     document.getElementById("red").style.backgroundColor = "rgba(255,0,0,0.2)";
   } else if (saveData.themeColor === "green") {
@@ -688,7 +737,7 @@ function setUpSettings() {
     document.getElementById("blue").style.backgroundColor = "rgba(8, 57, 206, 0.2)";
   } else if (saveData.themeColor === "purple") {
     document.getElementById("purple").style.backgroundColor = "rgba(164,70,153,0.2)";
-  }
+  } 
   if (saveData.bingoStyle === "ball") {
     document.getElementById("bingoStyleBall").style.backgroundColor = "rgba(0,0,0,0.15)";
   } else if (saveData.bingoStyle === "vintage") {
