@@ -77,6 +77,18 @@ function init() {
       show("fullScreenToggleLayer");
   		show("SplashBoardSlide", "grid");
   	},50);
+  } else if (param === "?about") {
+    setTimeout(() => {
+      hide("titleSlide");
+      show("fullScreenToggleLayer");
+  		show("aboutCreditsSlide", "grid");
+  	},50);
+  } else if (param === "?help") {
+    setTimeout(() => {
+      hide("titleSlide");
+      show("fullScreenToggleLayer");
+  		show("howToUseSlide", "grid");
+  	},50);
   } else {
     if (saveData.firstRun === 0 && supportsLocalStorage) {
       saveData.firstRun = 1;
